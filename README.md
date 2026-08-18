@@ -1,25 +1,48 @@
 # ETL-Pipeline
-Built an ETL Pipeline that loads, preprocesses, and enhances data with this pipeline. It supports CSV, Excel, and JSON formats, handles missing values, scales features, encodes categories, adds polynomial features, and applies PCA. Validates data at each step and saves results. Suitable for smaller datasets
+
+A Python-based ETL pipeline for loading, preprocessing, transforming, and exporting structured data. The pipeline supports multiple file formats, handles missing values, scales numerical features, encodes categorical variables, performs feature engineering, and applies PCA for dimensionality reduction.
 
 ## Features
 
-- **Data Loading**: 
-  - Supports multiple file formats including CSV, Excel (`.xls` and `.xlsx`), and JSON.
+* **Data Loading**
 
-- **Preprocessing**:
-  - Handles missing values by imputing with the mean of numerical columns.
-  - Standardizes numerical features using z-score normalization.
-  - Encodes categorical variables using one-hot encoding.
+  * Supports CSV, Excel (`.xls` and `.xlsx`), and JSON formats.
+  * Automatically detects the input format from the file extension.
 
-- **Feature Engineering**:
-  - Adds polynomial features to capture non-linear relationships.
-  - Applies Principal Component Analysis (PCA) for dimensionality reduction, useful for visualization and reducing feature space.
+* **Data Preprocessing**
 
-- **Validation**:
-  - Validates data at various stages to ensure correctness:
-    - Checks missing values post-imputation.
-    - Prints shapes and feature counts after transformations.
-    - Outputs explained variance from PCA.
+  * Handles missing numerical values using mean imputation.
+  * Standardizes numerical features using `StandardScaler`.
+  * Encodes categorical variables using one-hot encoding.
 
-- **Data Saving**:
-  - Saves the processed data back to CSV, Excel, or JSON formats.
+* **Feature Engineering**
+
+  * Generates squared polynomial features to expand the feature space.
+  * Applies Principal Component Analysis (PCA) to reduce the feature space to two principal components.
+  * Reports the explained variance ratio of the PCA components.
+
+* **Validation**
+
+  * Reports the initial dataset shape and column types.
+  * Checks for missing values after imputation.
+  * Reports the number of features after preprocessing and feature engineering.
+  * Outputs the explained variance ratio from PCA.
+
+* **Data Export**
+
+  * Saves the transformed data to CSV, Excel, or JSON.
+  * Automatically determines the output format from the file extension.
+
+## Pipeline
+
+**Extract → Transform → Load**
+
+1. Load data from CSV, Excel, or JSON.
+2. Preprocess numerical and categorical features.
+3. Handle missing values and standardize numerical features.
+4. Apply one-hot encoding to categorical features.
+5. Generate polynomial features.
+6. Apply PCA for dimensionality reduction.
+7. Save the transformed dataset in the desired format.
+
+Suitable for **small and structured datasets requiring a reusable preprocessing and feature engineering pipeline**.
